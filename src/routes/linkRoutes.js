@@ -1,0 +1,11 @@
+import express from 'express';
+import { protect } from '../middleware/authMiddleware.js';
+import { createLink, getMyLinks, updateLink, toggleLinkStatus, deleteLink, incrementClick } from '../controllers/linkController.js';
+const router = express.Router();
+router.post('/', protect, createLink);
+router.get('/me', protect, getMyLinks);
+router.put('/:id', protect, updateLink);
+router.patch('/:id/toggle', protect, toggleLinkStatus);
+router.delete('/:id', protect, deleteLink);
+router.patch('/:id/click', incrementClick);
+export default router;
